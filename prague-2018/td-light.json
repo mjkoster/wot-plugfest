@@ -5,23 +5,28 @@
     {"iot": "http://iotschema.org/",
      "http": "http://www.w3.org/2011/http#"}
   ],
-  "base": "http://159.203.213.90:1880",
-  "id": "smartthings-test-light",
+  "base": "http://0m2m.net:1880",
   "@type": [ "Thing", "iot:Light", "iot:BinarySwitch", "iot:Level" ],
   "name": "Lamp",
-  "properties": {
-    "SwitchState": {
+  "interaction": [
+    {
+      "name": "Switch State",
       "@type": ["Property", "iot:SwitchState"],
       "observable": false,
       "writable": true,
-      "type": "object",
-      "properties": {
-        "on": {
-          "@type": ["iot:StateData"],
-          "type": "boolean"
-        }
+      "schema":  {
+        "type": "object",
+        "field": [
+          {
+            "name": "on",
+            "@type": ["iot:StateData"],
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
       },
-      "forms": [
+      "form": [
         {
           "href": "/light",
           "mediaType": "application/json",
@@ -36,19 +41,26 @@
         }
       ]
     },
-    "CurrentBrightness": {
+    {
+      "name": "Current brightness",
       "@type": ["Property", "iot:CurrentLevel"],
       "observable": false,
       "writable": true,
-      "type": "object",
-        "properties": {
+      "schema": {
+        "type": "object",
+        "field": [
+          {
             "name": "bri",
             "@type": ["iot:LevelData" ],
-            "type": "integer",
-            "min": 0,
-            "max": 255
-          },
-      "forms": [
+            "schema": {
+              "type": "integer",
+              "min": 0,
+              "max": 255
+            }
+          }
+        ]
+      },
+      "form": [
         {
           "href": "/light",
           "mediaType": "application/json",
@@ -62,21 +74,23 @@
           "http:methodName": "POST"
         }
       ]
-    }
-  },
-  "actions": {
-    "SwitchOn": {
+    },
+    {
+      "name": "Switch On",
       "@type": ["Action", "iot:TurnOn"],
-      "input":  {
+      "inputSchema":  {
         "type": "object",
-        "properties": {
-          "on": {
-            "type": "boolean",
-            "const": true
+        "field": [
+          {
+            "name": "on",
+            "schema": {
+              "type": "boolean",
+              "const": true
+            }
           }
-        }
+        ]
       },
-      "forms": [
+      "form": [
         {
           "href": "/light",
           "mediaType": "application/json",
@@ -85,18 +99,22 @@
         }
       ]
     },
-    "Switch Off": {
+    {
+      "name": "Switch Off",
       "@type": ["Action", "iot:TurnOff"],
-      "input":  {
+      "inputSchema":  {
         "type": "object",
-        "properties": {
-          "on": {
-            "type": "boolean",
-            "const": false
+        "field": [
+          {
+            "name": "on",
+            "schema": {
+              "type": "boolean",
+              "const": false
+            }
           }
-        }
+        ]
       },
-      "forms": [
+      "form": [
         {
           "href": "/light",
           "mediaType": "application/json",
@@ -105,30 +123,40 @@
         }
       ]
     },
-    "Set brightness level": {
+    {
+      "name": "Set brightness level",
       "@type": ["Action", "iot:SetLevel"],
-      "input": {
+      "inputSchema": {
         "type": "object",
-        "properties": {
-          "bri": {
+        "field": [
+          {
+            "name": "bri",
             "@type": ["iot:LevelData"],
-            "type": "integer",
-            "min": 0,
-            "max": 255
+            "schema": {
+              "type": "integer",
+              "min": 0,
+              "max": 255
+            }
           },
-          "duration": {
+          {
+            "name": "duration",
             "@type": ["iot:TransitionTimeData"],
-            "type": "integer",
-            "min": 0,
-            "max": 65535
+            "schema": {
+              "type": "integer",
+              "min": 0,
+              "max": 65535
+            }
           },
-          "on": {
+          {
+            "name": "on",
             "@type": ["iot:StateData"],
-            "type": "boolean"
+            "schema": {
+              "type": "boolean"
+            }
           }
-        }
+        ]
       },
-      "forms": [
+      "form": [
         {
           "href": "/light",
           "mediaType": "application/json",
@@ -137,5 +165,5 @@
         }
       ]
     }
-  }
+  ]
 }
