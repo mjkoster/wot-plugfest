@@ -1,0 +1,18 @@
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install -y build-essential
+sudo npm install -g lerna
+sudo apt-get install git
+sudo adduser wot
+sudo visudo 
+su - wot
+git clone (-b <branch>) https://github.com/eclipse/thingweb.node-wot
+cd thingweb.node-wot
+npm install
+npm run build
+sudo npm run link
+
+

@@ -1,0 +1,112 @@
+{
+  "@context": { "iot": "https://iot.schema.org/" },
+  "name": "Lamp",
+  "description": "Corner torchiere",
+  "@type": ["Thing", "iot:Light"],
+  "id": "urn:dev:wot:com:example:servient:lamp",
+  "base": "https://servient.example.com/",
+  "properties": {
+    "on": {
+      "label": "On/Off",
+      "description": "Power switch",
+      "@type": "iot:SwitchStatus",
+      "type": "boolean",
+      "forms": [{
+        "href": "/things/lamp/properties/on",
+        "mediaType": "application/json"
+      }]
+    },
+    "status": {
+      "readOnly": true,
+      "@type": "iot:DeviceStatus",
+      "type": "object",
+      "properties": {
+        "battery": {
+          "@type": "iot:BatteryLevel",
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "forms": [{
+            "href": "/things/lamp/properties/status/batt",
+            "mediaType": "application/json"
+          }]
+        },
+        "rssi": {
+          "@type": "iot:SignalStrength",
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "level": {
+          "@type": "iot:CurrentLevel",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+	}
+      },
+      "forms": [{
+        "href": "/things/lamp/properties/status",
+        "mediaType": "application/json"
+      }]
+    },
+    "brightness": {
+      "@type": "iot:CurrentLevel",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "forms": [{
+        "href": "/things/lamp/properties/status",
+        "mediaType": "application/json"
+      }]
+    }
+  },
+  "actions": {
+    "fade": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "@type": "iot:CurrentLevel",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "to": {
+            "@type": "iot:TargetLevel",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "duration": {
+	    "@type": "iot:TransitionTimeData",
+	    "type": "number"
+	  }
+        }
+      },
+      "forms": [{
+        "href": "/things/lamp/actions/fade",
+        "inputMediaType": "application/json",
+        "outputMediaType": "application/json",
+        "http:methodName": "POST"
+      }]
+    }
+  },
+  "events": {
+    "overheated": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "number" }
+      },
+      "forms": [{
+        "href": "/things/lamp/events/overheated",
+        "http:subProtocol": "http:EventSource",
+        "mediaType": "application/json"
+      }]
+    }
+  },
+  "links": [{
+    "href": "https://servient.example.com/things/motion-detector",
+    "rel": "controlledBy",
+    "mediaType": "application/td+json"
+  }]
+}

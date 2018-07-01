@@ -6,7 +6,7 @@
      "http": "http://www.w3.org/2011/http#"}
   ],
   "base": "http://159.203.213.90:1880",
-  "id": "smartthings-test-light",
+  "id": "urn:uuid:2d5e84f6-85c9-4436-b53f-c0669dfd1603",
   "@type": [ "Thing", "iot:Light", "iot:BinarySwitch", "iot:Level" ],
   "name": "Lamp",
   "properties": {
