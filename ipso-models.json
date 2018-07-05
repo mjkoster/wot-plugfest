@@ -263,3 +263,26 @@
     }
   }
 }
+
+// iot.schema definition
+{
+"@id": "iot:Temperature",
+"@type": "rdfs:Class",
+"rdfs:comment": "Temperature interaction property",
+"rdfs:label": "Temperature",
+"rdfs:subClassOf": { "@id": "iot:Property" },
+"iot:providesOutputData": {
+  "@id": "iot:TemperatureData"
+  }
+},
+{
+"@id": "iot:TemperatureData",
+"@type": "rdfs:Class",
+"rdfs:comment": " Temperature data",
+"rdfs:label": "TemperatureData",
+"rdfs:subClassOf": { "@id": "schema:PropertyValue" },
+"schema:propertyType": { "@id": "schema:Float" },
+"schema:unitCode": { "@id": "iot:TemperatureUnit" },
+"schema:minValue": "schema:Float",
+"schema:maxValue": "schema:Float"
+},
