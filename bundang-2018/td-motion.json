@@ -1,7 +1,7 @@
 {
   "@context": [
-    "https://w3c.github.io/wot/w3c-wot-td-context.jsonld",
-    "https://w3c.github.io/wot/w3c-wot-common-context.jsonld",
+    "http://w3c.github.io/wot/w3c-wot-td-context.jsonld",
+    "http://w3c.github.io/wot/w3c-wot-common-context.jsonld",
     {"iot": "http://iotschema.org/",
      "http": "http://www.w3.org/2011/http#"}
   ],

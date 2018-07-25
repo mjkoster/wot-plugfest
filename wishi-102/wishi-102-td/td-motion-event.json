@@ -15,19 +15,20 @@
       "observable": true,
       "@type": ["Property", "iot:MotionDetected"],
       "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "n": {
-            "type": "string",
-            "const": "5700"
-          },
-          "vb": {
-            "@type": ["iot:stateData"],
-            "type": "boolean"
+      "items":
+        {
+          "type": "object",
+          "properties": {
+            "n": {
+              "type": "string",
+              "const": "5700"
+            },
+            "vb": {
+              "@type": ["iot:stateData"],
+              "type": "boolean"
+            }
           }
-        }
-      },
+        },
       "forms": [
         {
           "href": "/3300/2",
